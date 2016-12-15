@@ -2,13 +2,13 @@ Some lines of code are written by Henri Wahl <a href=https://github.com/HenriWah
 
 Thanks a lot for contributions, patches, hints, packaging,
 testing and ideas go at least to:<p>
- 
+
 Andreas Ericsson <a href=https://github.com/ageric>@ageric</a>,<br>
 Antoine Jacoutot,<br>
 Anton Löfgren <a href=https://github.com/catharsis>@catharsis</a>,<br>
-<a href=https://github.com/arkadiyvleonov>@arkadiyvleonov</a>,<br>
+Arkadiy <a href=https://github.com/arkadiyvleonov>@arkadiyvleonov</a>,<br>
 Arnaud Gomes <a href=https://github.com/nono-gdv>@nono-gdv</a>,<br>
-<a href=https://github.com/benoiteolas>@benoiteolas</a>,<br>
+Benoit Poulet <a href=https://github.com/BenoitPoulet>@BenoitPoulet</a>,<br>
 Benoît Soenen,<br>
 Carl Chenet,<br>
 Carl Helmertz <a href=https://github.com/chelmertz>@chelmertz</a>,<br>
@@ -21,7 +21,8 @@ Erinn Looney-Triggs <a href=https://github.com/erinn>@erinn</a>,<br>
 <a href=https://github.com/foscarini>@foscarini</a>,<br>
 Gabriele Tozzi <a href=https://github.com/gtozzi>@gtozzi</a>,<br>
 <a href=https://github.com/janhenkins>@janhenkins</a>,<br>
-Jake Murphy,<br>
+Jan-Philipp Litza <a href=https://github.com/jplitza>@jplitza</a>,<br>
+Jake Murphy  <a href=https://github.com/Murph9>@Murph9</a>,<br>
 John Conroy,<br>
 Lars Michelsen <a href=https://github.com/LarsMichelsen>@LarsMichelsen</a>,<br>
 M. Cigdem Cebe,<br>
@@ -34,9 +35,10 @@ Nikita Klimov,<br>
 Patrick Cernko,<br>
 Pawel Połewicz,<br>
 Robin Sonefors,<br>
-<a href=https://github.com/RymRabehi>@RymRabehi</a>,<br>
+Rym Rabehi <a href=https://github.com/RymRabehi>@RymRabehi</a>,<br>
 Salvatore LaMendola <a href=https://github.com/vt0r>@vt0r</a>,<br>
 Sandro Tosi,<br>
+Stefano Stella <a href=https://github.com/mprenditore>@mprenditore</a>,<br>
 Sven Nierlein <a href=https://github.com/sni>@sni</a>,<br>
 Thomas Gelf <a href=https://github.com/Thomas-Gelf>@Thomas-Gelf</a>,<br>
 Tobias Scheerbaum</a>,<br>
@@ -51,7 +53,5 @@ Also thanks to the great thirdparty modules used by Nagstamon:<p>
 
 BeautifulSoup: <a href=https://www.crummy.com/software/BeautifulSoup>https://www.crummy.com/software/BeautifulSoup/</a><br>
 Requests: <a href=http://www.python-requests.org>http://www.python-requests.org</a><br>
-Keyring: <h href=https://github.com/jaraco/keyring>https://github.com/jaraco/keyring</a><br>
+Keyring: <a href=https://github.com/jaraco/keyring>https://github.com/jaraco/keyring</a><br>
 emwh.py: <a href=https://github.com/parkouss/pyewmh>https://github.com/parkouss/pyewmh</a>
-
-

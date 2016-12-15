@@ -140,8 +140,14 @@ def create_server(server=None):
     # Icinga
     new_server.use_display_name_host = server.use_display_name_host
     new_server.use_display_name_service = server.use_display_name_service
+    # IcingaWeb2
+    new_server.no_cookie_auth = server.no_cookie_auth
     # Check_MK Multisite
     new_server.force_authuser = server.force_authuser
+
+    # OP5 api filters
+    new_server.host_filter = server.host_filter
+    new_server.service_filter = server.service_filter
 
     # server's individual preparations for HTTP connections (for example cookie creation)
     # is done in GetStatus() method of monitor

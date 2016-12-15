@@ -47,8 +47,8 @@ def winmain():
         execute steps necessary for compilation of Windows binaries and setup.exe
     """
     # InnoSetup does not like VersionInfoVersion with letters, only 0.0.0.0 schemed numbers
-    if 'alpha' in VERSION.lower() or 'beta' in VERSION.lower():
-        VERSION_IS = VERSION.replace('alpha', '').replace('beta', '').replace('-', '.').replace('..', '.')
+    if 'alpha' in VERSION.lower() or 'beta' in VERSION.lower() or 'rc' in VERSION.lower() or '-' in VERSION.lower():
+        VERSION_IS = VERSION.replace('alpha', '').replace('beta', '').replace('rc', '').replace('-', '.').replace('..', '.')
         VERSION_IS = VERSION_IS.split('.')
         version_segments = list()
         for part in VERSION_IS:
@@ -61,6 +61,8 @@ def winmain():
     else:
         VERSION_IS = VERSION
 
+    print('VERSION_IS:', VERSION_IS)
+    
     ISCC = r'{0}{1}Inno Setup 5{1}iscc.exe'.format(os.environ['PROGRAMFILES{0}'.format(ARCH_OPTS[ARCH][2])], os.sep)
     DIR_BUILD_EXE = '{0}{1}exe.{2}-{3}'.format(CURRENT_DIR, os.sep, ARCH_OPTS[ARCH][0], PYTHON_VERSION)
     DIR_BUILD_NAGSTAMON = '{0}{1}Nagstamon-{2}-win{3}'.format(CURRENT_DIR, os.sep, VERSION, ARCH)

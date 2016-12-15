@@ -18,6 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 import requests
+import requests_kerberos
 # disable annoying InsecureRequestWarning warnings
 try:
     requests.packages.urllib3.disable_warnings()
@@ -160,6 +161,9 @@ class GenericServer(object):
         # Check_MK Multisite
         self.force_authuser = False
 
+        # OP5 api filters
+        self.host_filter = 'state !=0'
+        self.service_filter = 'state !=0 or host.state != 0'
 
     def init_config(self):
         '''
@@ -204,6 +208,8 @@ class GenericServer(object):
                 self.session.auth = requests.auth.HTTPBasicAuth(self.username, self.password)
             elif self.authentication == 'digest':
                 self.session.auth = requests.auth.HTTPDigestAuth(self.username, self.password)
+            elif self.authentication == 'kerberos':
+                self.session.auth = requests_kerberos.HTTPKerberosAuth()
 
             # default to not check TLS validity
             self.session.verify = False
@@ -330,7 +336,7 @@ class GenericServer(object):
                               info_dict['persistent'],
                               all_services)
 
-        # resfresh immediately according to https://github.com/HenriWahl/Nagstamon/issues/86
+        # refresh immediately according to https://github.com/HenriWahl/Nagstamon/issues/86
         # ##self.thread.doRefresh = True
 
 
@@ -530,11 +536,6 @@ class GenericServer(object):
                 result = self.FetchURL(self.cgiurl_hosts[status_type])               
                 htobj, error, status_code = result.result, result.error, result.status_code
                 
-                #if error != '' or status_code > 400:
-                #    return Result(result=copy.deepcopy(htobj),
-                #                              error=copy.deepcopy(error),
-                #                              status_code=copy.deepcopy(status_code))
-
                 # check if any error occured
                 errors_occured = self.check_for_error(htobj, error, status_code)
                 # if there are errors return them
@@ -659,11 +660,6 @@ class GenericServer(object):
             for status_type in 'hard', 'soft':
                 result = self.FetchURL(self.cgiurl_services[status_type])
                 htobj, error, status_code = result.result, result.error, result.status_code
-
-                #if error != '' or status_code > 400:
-                #    return Result(result=copy.deepcopy(htobj),
-                #                  error=copy.deepcopy(error),
-                #                  status_code=code.deepcopy(status_code))
 
                 # check if any error occured
                 errors_occured = self.check_for_error(htobj, error, status_code)
@@ -828,7 +824,10 @@ class GenericServer(object):
         # and sometimes send a bad status line which would result in a misleading
         # ERROR display - it seems safe to ignore these errors
         # see https://github.com/HenriWahl/Nagstamon/issues/207
-        if 'BadStatusLine' in self.status_description:
+        # Update: Another strange error to ignore is ConnectionResetError
+        # see https://github.com/HenriWahl/Nagstamon/issues/295       
+        if 'BadStatusLine' in self.status_description or\
+           'ConnectionResetError' in self.status_description:
             self.status_description = ''
             self.isChecking = False
             return Result(result=self.status,
